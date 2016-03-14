@@ -23,9 +23,10 @@ class MY_FPDF extends FPDF_EXTENDED
      * @param int $border
      * @param string $align
      * @param bool|false $fill
-     * @param int $ln
+     * @param int $ln Indicates where the current position should go after the
+     * call. Possible values are: 0 - to the rigth. Default to 2
      */
-    function MultiCell($w, $h, $txt, $border = 0, $align = 'J', $fill = false, $ln = 0)
+    function MultiCell($w, $h, $txt, $border = 0, $align = 'J', $fill = false, $ln = 2)
     {
         if ($ln == 0) {
             $x = $this->GetX();
