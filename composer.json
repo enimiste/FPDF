@@ -7,7 +7,7 @@
     "fpdf",
     "switcher"
   ],
-  "minimum-stability": "dev",
+  "minimum-stability": "stable",
   "license": "proprietary",
   "authors": [
     {
