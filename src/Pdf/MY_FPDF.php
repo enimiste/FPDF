@@ -45,14 +45,28 @@ class MY_FPDF extends FPDF_EXTENDED {
 	 */
 	public function MutliCellTable( array $cells ) {
 
-		$totalHieghts = [ ];
+		$x0       = $this->GetX();
+		$y0       = $this->GetY();
+		$maxY     = $y0;
+		$sumWidth = 0;
+		$borders  = [ ];
 		/** @var Cell $cell */
 		foreach ( $cells as $cell ) {
-			$totalHieghts[] = $this->__calculateCellMultiLineHight( $cell->getWidth(),
-				$cell->getHeight(),
-				$cell->getText(),
-				$cell->getBorder(),
-				$cell->getAlign() );
+			$borders[] = $cell->getBorder();
+			$this->MultiCell( $cell->getWidth(), $cell->getHeight(), $cell->getText(), 0, $cell->getAlign(), $cell->isFill(), 2 );
+			$y = $this->GetY();
+			if ( $y > $maxY ) {
+				$maxY = $y;
+			}
+			$this->SetXY( $this->GetX() + $cell->getWidth(), $y0 );
+			$sumWidth += $cell->getWidth();
+		}
+		if ( $sumWidth > 0 ) {
+			$maxHeight = $maxY - $y0;
+			foreach ( $cells as $cell ) {
+				$this->Rect( $x0, $y0, $cell->getWidth(), $maxHeight );
+				$x0 += $cell->getWidth();
+			}
 		}
 	}
 
