@@ -1,0 +1,20 @@
+{
+  "name": "enimiste/FPDF",
+  "description": "FPDF extensions and facilities",
+  "minimum-stability": "dev",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "NOUNI EL BACHIR",
+      "email": "nouni.elbachir@gmail.com"
+    }
+  ],
+  "require": {
+    "itbz/fpdf": "^1.7"
+  },
+  "autoload": {
+    "psr-4": {
+      "Com\\NickelIT\\": "src"
+    }
+  }
+}
