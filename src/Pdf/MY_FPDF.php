@@ -42,7 +42,7 @@ class MY_FPDF extends FPDF_EXTENDED {
 	 *
 	 * @param array $cells of Cell object
 	 */
-	public function MutliCellTable( array $cells ) {
+	public function MutliCellRow( array $cells ) {
 		$x0        = $this->GetX();
 		$y0        = $this->GetY();
 		$maxY      = $y0;
