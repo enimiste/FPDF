@@ -6,7 +6,7 @@
  * Time: 17:34
  */
 
-namespace Pdf;
+namespace Com\NickelIT\Pdf;
 
 
 class Cell {
