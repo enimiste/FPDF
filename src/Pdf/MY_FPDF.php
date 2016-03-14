@@ -54,7 +54,6 @@ class MY_FPDF extends FPDF_EXTENDED {
 				$cell->getBorder(),
 				$cell->getAlign() );
 		}
-		print_r($totalHieghts);
 	}
 
 	/**
