@@ -43,22 +43,26 @@ class MY_FPDF extends FPDF_EXTENDED {
 	 * @param array $cells of Cell object
 	 */
 	public function MutliCellTable( array $cells ) {
-
-		$x0       = $this->GetX();
-		$y0       = $this->GetY();
-		$maxY     = $y0;
-		$sumWidth = 0;
-		$borders  = [ ];
+		$x0        = $this->GetX();
+		$y0        = $this->GetY();
+		$maxY      = $y0;
+		$sumWidth  = 0;
+		$hasBorder = false;
+		$hasFill   = false;
 		/** @var Cell $cell */
 		foreach ( $cells as $cell ) {
-			$borders[] = $cell->getBorder();
-			$this->MultiCell( $cell->getWidth(), $cell->getHeight(), $cell->getText(), 0, $cell->getAlign(), $cell->isFill(), 2 );
-			$y = $this->GetY();
-			if ( $y > $maxY ) {
-				$maxY = $y;
+			$hasBorder = $hasBorder || ( $cell->getBorder() == 1 );
+			$hasFill   = $hasFill || $cell->isFill();
+			$by        = $this->GetY();//before
+			$bx        = $this->GetX();//before
+			$this->MultiCell( $cell->getWidth(), $cell->getHeight(), $cell->getText(), 0, $cell->getAlign(), false, 2 );
+			$ay = $this->GetY();//after
+			if ( $ay > $maxY ) {
+				$maxY = $ay;
 			}
-			$this->SetXY( $this->GetX() + $cell->getWidth(), $y0 );
+			$this->SetXY( $bx + $cell->getWidth(), $by );
 			$sumWidth += $cell->getWidth();
+
 		}
 		if ( $sumWidth > 0 ) {
 			$maxHeight = $maxY - $y0;
@@ -67,5 +71,6 @@ class MY_FPDF extends FPDF_EXTENDED {
 				$x0 += $cell->getWidth();
 			}
 		}
+		$this->SetY( $maxY );
 	}
 }
