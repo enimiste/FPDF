@@ -1,6 +1,12 @@
 {
-  "name": "enimiste/FPDF",
+  "name": "enimiste/fpdf",
   "description": "FPDF extensions and facilities",
+  "type": "library",
+  "keywords": [
+    "pdf",
+    "fpdf",
+    "switcher"
+  ],
   "minimum-stability": "dev",
   "license": "proprietary",
   "authors": [
@@ -10,6 +16,7 @@
     }
   ],
   "require": {
+    "php": ">=5.5.*",
     "itbz/fpdf": "^1.7"
   },
   "autoload": {
